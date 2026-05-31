@@ -56,12 +56,12 @@ jobs:
 
       # convert MP4 → optimised GIF with ffmpeg
       - run: >
-          ffmpeg -i assets/skills-ticker.mp4
+          ffmpeg -y -i assets/skills-ticker.mp4
           -vf "fps=30,scale=960:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse"
           -loop 0 assets/skills-ticker.gif
 
       - run: >
-          ffmpeg -i assets/terminal.mp4
+          ffmpeg -y -i assets/terminal.mp4
           -vf "fps=30,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse"
           -loop 0 assets/terminal.gif
 
