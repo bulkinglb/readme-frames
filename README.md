@@ -101,12 +101,14 @@ Icon slugs come from [Simple Icons](https://simpleicons.org) — hover any icon 
 
 ## Embedding in your profile README
 
-After rendering, commit the GIF files to your profile repo (`username/username`) and add:
+After forking, the Action will render and commit the GIFs to your fork's `assets/` folder. Then add these to your `username/username` README, swapping in your GitHub username:
 
 ```md
-![Skills](./assets/skills-ticker.gif)
-![Terminal](./assets/terminal.gif)
+![Skills](https://raw.githubusercontent.com/username/readme-frames/master/assets/skills-ticker.gif)
+![Terminal](https://raw.githubusercontent.com/username/readme-frames/master/assets/terminal.gif)
 ```
+
+The `raw.githubusercontent.com` URL always serves the latest committed GIF straight from your fork — no copying files, no manual updates.
 
 ---
 
