@@ -25,7 +25,7 @@ jobs:
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: ffmpeg libblas3 liblapack3
-          version: 1.0
+          version: 1.1
 
       # cache hyperframes global install
       - name: Cache hyperframes
