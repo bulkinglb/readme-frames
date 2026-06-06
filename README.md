@@ -16,8 +16,9 @@ Fork → edit one config file → render → embed. Two compositions ship out of
 
 | File | Dimensions | What it does |
 |------|-----------|--------------|
-| `compositions/skills-ticker.html` | 1920 × 120 | Infinite-scrolling tech stack marquee |
-| `compositions/terminal.html` | 800 × 320 | Fake terminal that types your story |
+| `compositions/intro-card/` | 1280 × 240 | Name fades in, role types out |
+| `compositions/skills-ticker/` | 1920 × 120 | Infinite-scrolling tech stack marquee |
+| `compositions/terminal/` | 800 × 320 | Fake terminal that types your story |
 
 ---
 
@@ -25,7 +26,6 @@ Fork → edit one config file → render → embed. Two compositions ship out of
 
 | Idea | Dimensions | Notes |
 |------|-----------|-------|
-| Animated intro card | 1280 × 240 | Name fades in, role types out |
 | Commit activity bar chart | 900 × 300 | Pulls from GitHub API |
 | Language donut chart | 600 × 400 | Pulls from GitHub API |
 | Project spotlight reel | 1280 × 480 | One slide per pinned repo |

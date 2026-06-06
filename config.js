@@ -27,6 +27,16 @@ const CONFIG = {
     { type: 'success', text: '2b||!2b — that is the question' },
   ],
 
+  // ── Intro card ────────────────────────────────────────────────
+  //   name:          large heading that fades in
+  //   role:          typed out beneath it
+  //   nameFadeDuration:  seconds for the name fade-in
+  //   roleTypingSpeed:   ms per character for the role line
+  introName: 'bulkinglb',
+  introRole: 'dedicated developer — open-source && challenging problems',
+  nameFadeDuration: 0.9,   // seconds
+  roleTypingSpeed:  60,    // ms per character
+
   // ── Terminal timing ───────────────────────────────────────────
   typingSpeed:   55,   // ms per character (commands)
   pauseAfterLine: 800, // ms of silence before the next prompt appears

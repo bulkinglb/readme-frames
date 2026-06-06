@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0d1117;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #stage {
+      width: 1280px;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle top + bottom border lines */
+    #stage::before,
+    #stage::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #30363d 20%, #30363d 80%, transparent);
+    }
+    #stage::before { top: 0; }
+    #stage::after  { bottom: 0; }
+
+    #name {
+      font-family: ui-monospace, 'SF Mono', 'Fira Code', monospace;
+      font-size: 64px;
+      font-weight: 700;
+      color: #e6edf3;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      opacity: 0;
+      transform: translateY(24px);
+      will-change: opacity, transform;
+    }
+
+    #role-line {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: ui-monospace, 'SF Mono', 'Fira Code', monospace;
+      font-size: 22px;
+    }
+
+    #prompt {
+      color: #7ee787;
+      opacity: 0;
+    }
+
+    #role {
+      color: #8b949e;
+    }
+
+    #cursor {
+      display: inline-block;
+      width: 13px;
+      height: 22px;
+      background: #7ee787;
+      vertical-align: middle;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="stage"
+    data-composition-id="intro-card"
+    data-start="0"
+    data-width="1280"
+    data-height="240">
+
+    <div id="name"></div>
+
+    <div id="role-line">
+      <span id="prompt">~$</span>
+      <span id="role"></span>
+      <span id="cursor"></span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="./config.js"></script>
+  <script>
+    const nameEl   = document.getElementById('name');
+    const roleEl   = document.getElementById('role');
+    const promptEl = document.getElementById('prompt');
+    const cursorEl = document.getElementById('cursor');
+
+    nameEl.textContent = CONFIG.introName;
+
+    const FADE     = CONFIG.nameFadeDuration;
+    const SPEED    = CONFIG.roleTypingSpeed / 1000;
+    const PAUSE    = 0.3; // gap between name fully visible and role starting
+
+    const tl = gsap.timeline({ paused: true });
+
+    // 1. name fades in, slides up
+    tl.to(nameEl, {
+      opacity: 1,
+      y: 0,
+      duration: FADE,
+      ease: 'power3.out',
+    }, 0);
+
+    // 2. prompt + cursor appear after name lands
+    const roleStart = FADE + PAUSE;
+    tl.to(promptEl, { opacity: 1, duration: 0.2 }, roleStart);
+    tl.to(cursorEl, { opacity: 1, duration: 0.1 }, roleStart);
+
+    // 3. type the role line character by character
+    let t = roleStart + 0.2;
+    for (const ch of CONFIG.introRole) {
+      const c = ch;
+      tl.call(() => { roleEl.textContent += c; }, [], t);
+      t += SPEED;
+    }
+
+    // 4. hold on final frame for 1s
+    tl.set({}, {}, t + 1);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines['intro-card'] = tl;
+  </script>
+</body>
+</html>

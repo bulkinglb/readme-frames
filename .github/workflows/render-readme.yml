@@ -46,15 +46,22 @@ jobs:
         run: npm install -g hyperframes
 
       # config.js must sit next to each index.html so Chrome can load it
-      - run: cp config.js compositions/skills-ticker/config.js && cp config.js compositions/terminal/config.js
+      - run: cp config.js compositions/skills-ticker/config.js && cp config.js compositions/terminal/config.js && cp config.js compositions/intro-card/config.js
 
       # render to MP4 first (hyperframes doesn't support gif directly)
       # must cd into each project dir so hyperframes finds index.html in CWD
+      - run: cd compositions/intro-card && hyperframes render --fps 60 --output ../../assets/intro-card.mp4
+
       - run: cd compositions/skills-ticker && hyperframes render --fps 60 --output ../../assets/skills-ticker.mp4
 
       - run: cd compositions/terminal && hyperframes render --fps 60 --output ../../assets/terminal.mp4
 
       # convert MP4 → optimised GIF with ffmpeg
+      - run: >
+          ffmpeg -y -i assets/intro-card.mp4
+          -vf "fps=30,scale=1280:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse"
+          -loop 0 assets/intro-card.gif
+
       - run: >
           ffmpeg -y -i assets/skills-ticker.mp4
           -vf "fps=30,scale=960:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse"
@@ -66,7 +73,7 @@ jobs:
           -loop 0 assets/terminal.gif
 
       # clean up intermediary MP4s
-      - run: rm assets/skills-ticker.mp4 assets/terminal.mp4
+      - run: rm assets/intro-card.mp4 assets/skills-ticker.mp4 assets/terminal.mp4
 
       - name: Commit rendered GIFs
         run: |
