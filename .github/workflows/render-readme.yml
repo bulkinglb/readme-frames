@@ -20,12 +20,13 @@ jobs:
         with:
           node-version: '22'
 
-      # cache apt packages across runs
       - name: Cache apt packages
-        uses: awalsh128/cache-apt-pkgs-action@latest
+        uses: actions/cache@v4
         with:
-          packages: ffmpeg libblas3 liblapack3
-          version: 1.1
+          path: /var/cache/apt/archives
+          key: apt-${{ runner.os }}-ffmpeg-libblas3
+
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg libblas3 liblapack3
 
       # cache hyperframes global install
       - name: Cache hyperframes
