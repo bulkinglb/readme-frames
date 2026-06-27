@@ -23,7 +23,7 @@ Fork → edit one config file → render → embed. Four compositions ship out o
 | `compositions/intro-card/` | 1280 × 240 | Name fades in, role types out |
 | `compositions/skills-ticker/` | 1920 × 120 | Infinite-scrolling tech stack marquee |
 | `compositions/terminal/` | 800 × 320 | Fake terminal that types your story |
-| `compositions/commit-chart/` | 900 × 300 | Bar chart of recent commit activity, live from the GitHub API |
+| `compositions/commit-chart/` | 900 × 300 | Monthly commit activity across your repos, area chart live from the GitHub API |
 
 ---
 
@@ -61,6 +61,8 @@ ffmpeg -y -i assets/terminal.mp4 \
 ```
 
 Repeat for `intro-card`, `skills-ticker`, and `commit-chart` (see `.github/workflows/render-readme.yml` for the exact commands used in CI) — or just push and let the Action do it for you.
+
+> **commit-chart** needs one extra step first — `node scripts/fetch-commit-data.js` aggregates your monthly commit activity into `compositions/commit-chart/data.js` before rendering. Set `GITHUB_TOKEN` to avoid the unauthenticated rate limit (CI does this automatically).
 
 ---
 
@@ -101,11 +103,11 @@ const CONFIG = {
     // find slugs at https://simpleicons.org
   ],
 
-  // commit activity chart — pulls live from the GitHub REST API, no auth needed
+  // commit activity chart — monthly totals across all your public repos,
+  // pulled live from the GitHub REST API (no auth needed)
   commitChart: {
-    repo: 'yourname/readme-frames',
-    weeks: 12,
-    barColor: '#7ee787',
+    months: 12,
+    color: '#7ee787',
   },
 };
 ```
