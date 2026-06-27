@@ -14,7 +14,7 @@ Fork → edit one config file → render → embed. Five compositions ship out o
 
 ![Commit activity](./assets/commit-chart.gif)
 
-![Languages](./assets/lang-donut.gif)
+![Languages](./assets/lang-donut.png)
 
 ---
 
@@ -142,7 +142,7 @@ After forking, the Action will render and commit the GIFs to your fork's `assets
 ![Skills](https://raw.githubusercontent.com/username/readme-frames/master/assets/skills-ticker.gif)
 ![Terminal](https://raw.githubusercontent.com/username/readme-frames/master/assets/terminal.gif)
 ![Commits](https://raw.githubusercontent.com/username/readme-frames/master/assets/commit-chart.gif)
-![Languages](https://raw.githubusercontent.com/username/readme-frames/master/assets/lang-donut.gif)
+![Languages](https://raw.githubusercontent.com/username/readme-frames/master/assets/lang-donut.png)
 ```
 
 The `raw.githubusercontent.com` URL always serves the latest committed GIF straight from your fork — no copying files, no manual updates.

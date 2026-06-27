@@ -100,10 +100,12 @@ jobs:
           -vf "fps=30,scale=900:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse"
           -loop 0 assets/commit-chart.gif
 
+      # lang-donut is a data chart — grab the final settled frame as a static PNG
+      # (a looping GIF re-animates and never sits still long enough to read)
       - run: >
-          ffmpeg -y -i assets/lang-donut.mp4
-          -vf "fps=30,scale=600:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse"
-          -loop 0 assets/lang-donut.gif
+          ffmpeg -y -sseof -0.3 -i assets/lang-donut.mp4
+          -update 1 -frames:v 1
+          -vf "scale=600:-1:flags=lanczos" assets/lang-donut.png
 
       # clean up intermediary MP4s
       - run: rm assets/intro-card.mp4 assets/skills-ticker.mp4 assets/terminal.mp4 assets/commit-chart.mp4 assets/lang-donut.mp4
