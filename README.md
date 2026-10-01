@@ -24,7 +24,7 @@ Fork → edit one config file → render → embed. Five compositions ship out o
 |------|-----------|--------------|
 | `compositions/intro-card/` | 1280 × 240 | Name fades in, role types out |
 | `compositions/skills-ticker/` | 1920 × 120 | Infinite-scrolling tech stack marquee |
-| `compositions/terminal/` | 800 × 320 | Fake terminal that types your story |
+| `compositions/terminal/` | 800 × 256 | Fake terminal that types your story |
 | `compositions/commit-chart/` | 900 × 300 | Monthly commit activity across your repos, area chart live from the GitHub API |
 | `compositions/lang-donut/` | 600 × 400 | Most-used languages across your repos, donut chart live from the GitHub API |
 

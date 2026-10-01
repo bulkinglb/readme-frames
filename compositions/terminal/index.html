@@ -13,9 +13,11 @@
       overflow: hidden;
     }
 
+    /* height fits 9 rows (8 config lines + final prompt) with no dead space:
+       2 border + 32 titlebar + 32 padding + rows × 20.8 — keep data-height in sync */
     #stage {
       width: 800px;
-      height: 320px;
+      height: 256px;
       display: flex;
       flex-direction: column;
       border-radius: 8px;
@@ -73,7 +75,7 @@
     data-composition-id="terminal"
     data-start="0"
     data-width="800"
-    data-height="320">
+    data-height="256">
 
     <div class="titlebar">
       <span class="dot dot-red"></span>
